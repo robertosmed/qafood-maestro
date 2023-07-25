@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    containers:
+      image: docker.io/cypress/browsers
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - names: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - uses: mobile-dev-inc/action-maestro-cloud@v1.1.0
+        with:
+          api-key: c78b0878-f16f-4a3c-9dc3-7740c28f8df9
+          app-file: app-release.apk 
